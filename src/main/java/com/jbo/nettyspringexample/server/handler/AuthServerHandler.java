@@ -40,7 +40,7 @@ public class AuthServerHandler extends ChannelInboundHandlerAdapter {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		Message.MessageBase msgBase = (Message.MessageBase)msg;
+		MessageBase msgBase = (MessageBase)msg;
 		String clientId = msgBase.getClientId();
 		
 		Channel ch = channelRepository.get(clientId);

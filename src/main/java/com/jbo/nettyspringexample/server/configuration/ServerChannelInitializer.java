@@ -38,22 +38,22 @@ public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> 
 
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
-    	ChannelPipeline p = socketChannel.pipeline();
+        ChannelPipeline p = socketChannel.pipeline();
+        /*
+        * IdleStateHandler这个类会根据你设置的超时参数的类型和值，
+        * 循环去检测channelRead和write方法多久没有被调用了，
+        * 如果这个时间超过了你设置的值，那么就会触发对应的事件，read触发read，write触发write，all触发all
+        * */
+        p.addLast("idleStateHandler", new IdleStateHandler(READER_IDLE_TIME_SECONDS
+                , WRITER_IDLE_TIME_SECONDS, ALL_IDLE_TIME_SECONDS, TimeUnit.SECONDS));
+        p.addLast("idleTimeoutHandler", new IdleServerHandler());
 
-    	/*
-    	* IdleStateHandler这个类会根据你设置的超时参数的类型和值，循环去检测channelRead和write方法多久没有被调用了，
-    	* 如果这个时间超过了你设置的值，那么就会触发对应的事件，read触发read，write触发write，all触发all
-    	* */
-    	p.addLast("idleStateHandler", new IdleStateHandler(READER_IDLE_TIME_SECONDS
-    			, WRITER_IDLE_TIME_SECONDS, ALL_IDLE_TIME_SECONDS, TimeUnit.SECONDS));
-	    p.addLast("idleTimeoutHandler", new IdleServerHandler());
-	    
         p.addLast(new ProtobufVarint32FrameDecoder());
         p.addLast(new ProtobufDecoder(MessageBase.getDefaultInstance()));
 
         p.addLast(new ProtobufVarint32LengthFieldPrepender());
         p.addLast(new ProtobufEncoder());
-	    
+
         p.addLast("authServerHandler", authServerHandler);
         p.addLast("hearableServerHandler", logicServerHandler);
     }

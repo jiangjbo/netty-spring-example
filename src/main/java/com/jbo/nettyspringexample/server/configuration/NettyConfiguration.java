@@ -58,7 +58,7 @@ public class NettyConfiguration {
                 .childHandler(serverChannelInitializer);
         Map<ChannelOption<?>, Object> tcpChannelOptions = tcpChannelOptions();
         Set<ChannelOption<?>> keySet = tcpChannelOptions.keySet();
-        for (@SuppressWarnings("rawtypes") ChannelOption option : keySet) {
+        for (ChannelOption option : keySet) {
             b.option(option, tcpChannelOptions.get(option));
         }
         return b;
@@ -86,9 +86,4 @@ public class NettyConfiguration {
     public InetSocketAddress tcpPort() {
         return new InetSocketAddress(tcpPort);
     }
-//
-//    @Bean(name = "channelRepository")
-//    public ChannelRepository channelRepository() {
-//        return new ChannelRepository();
-//    }
 }

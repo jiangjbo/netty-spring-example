@@ -38,13 +38,12 @@ public class IdleClientHandler extends SimpleChannelInboundHandler<Message> {
 
 	// 发送ping消息
 	private void sendPingMsg(ChannelHandlerContext context) {
-		context.writeAndFlush(
-				Message.MessageBase.newBuilder()
+		Message.MessageBase pingMsg = Message.MessageBase.newBuilder()
 				.setClientId(CLIENT_ID)
 				.setCmd(Command.CommandType.PING)
 				.setData("This is a ping msg")
-				.build()
-				);
+				.build();
+		context.writeAndFlush(pingMsg);
 		heartbeatCount++;
 		logger.info("Client sent ping msg to " + context.channel().remoteAddress() + ", count: " + heartbeatCount);
 	}

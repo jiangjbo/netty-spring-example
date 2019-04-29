@@ -16,12 +16,12 @@ public class LogicClientHandler extends SimpleChannelInboundHandler<MessageBase>
 	// 连接成功后，向server发送消息  
 	@Override  
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-		MessageBase.Builder authMsg = MessageBase.newBuilder();
-		authMsg.setClientId(CLIENTID);
-		authMsg.setCmd(CommandType.AUTH);
-		authMsg.setData("This is auth data");
-
-		ctx.writeAndFlush(authMsg.build());
+		MessageBase authMsg = MessageBase.newBuilder()
+				.setClientId(CLIENTID)
+				.setCmd(CommandType.AUTH)
+				.setData("This is auth data")
+				.build();
+		ctx.writeAndFlush(authMsg);
 	}
 
 	@Override

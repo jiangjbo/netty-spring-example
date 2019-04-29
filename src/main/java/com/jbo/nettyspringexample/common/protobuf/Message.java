@@ -2,8 +2,6 @@ package com.jbo.nettyspringexample.common.protobuf;
 
 import com.google.protobuf.*;
 
-import static com.jbo.nettyspringexample.common.protobuf.Command.CommandType;
-
 public final class Message {
 
     private Message() {
@@ -14,25 +12,6 @@ public final class Message {
 
     public static void registerAllExtensions(ExtensionRegistry registry) {
         registerAllExtensions((ExtensionRegistryLite) registry);
-    }
-
-    public interface MessageBaseOrBuilder extends MessageOrBuilder {
-
-        boolean hasClientId();
-
-        String getClientId();
-
-        ByteString getClientIdBytes();
-
-        boolean hasCmd();
-
-        CommandType getCmd();
-
-        boolean hasData();
-
-        String getData();
-
-        ByteString getDataBytes();
     }
 
     public static final class MessageBase extends GeneratedMessageV3 implements MessageBaseOrBuilder {
@@ -105,12 +84,12 @@ public final class Message {
         }
 
         public static Descriptors.Descriptor getDescriptor() {
-            return Message.internal_static_MessageBase_descriptor;
+            return internal_static_MessageBase_descriptor;
         }
 
         protected GeneratedMessageV3.FieldAccessorTable internalGetFieldAccessorTable() {
-            return Message.internal_static_MessageBase_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(Message.MessageBase.class, Message.MessageBase.Builder.class);
+            return internal_static_MessageBase_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(MessageBase.class, MessageBase.Builder.class);
         }
 
         private int bitField0_;
@@ -250,10 +229,10 @@ public final class Message {
             if (obj == this) {
                 return true;
             }
-            if (!(obj instanceof Message.MessageBase)) {
+            if (!(obj instanceof MessageBase)) {
                 return super.equals(obj);
             }
-            Message.MessageBase other = (Message.MessageBase) obj;
+            MessageBase other = (MessageBase) obj;
 
             boolean result = true;
             result = result && (hasClientId() == other.hasClientId());
@@ -298,7 +277,6 @@ public final class Message {
             return hash;
         }
 
-        @Deprecated
         public static final Parser<MessageBase> PARSER = new AbstractParser<MessageBase>() {
             public MessageBase parsePartialFrom(CodedInputStream input, ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
                 return new MessageBase(input, extensionRegistry);
@@ -367,25 +345,24 @@ public final class Message {
                 return this;
             }
 
-            public Descriptors.Descriptor
-            getDescriptorForType() {
-                return Message.internal_static_MessageBase_descriptor;
+            public Descriptors.Descriptor getDescriptorForType() {
+                return internal_static_MessageBase_descriptor;
             }
 
-            public Message.MessageBase getDefaultInstanceForType() {
-                return Message.MessageBase.getDefaultInstance();
+            public MessageBase getDefaultInstanceForType() {
+                return MessageBase.getDefaultInstance();
             }
 
-            public Message.MessageBase build() {
-                Message.MessageBase result = buildPartial();
+            public MessageBase build() {
+                MessageBase result = buildPartial();
                 if (!result.isInitialized()) {
                     throw newUninitializedMessageException(result);
                 }
                 return result;
             }
 
-            public Message.MessageBase buildPartial() {
-                Message.MessageBase result = new Message.MessageBase(this);
+            public MessageBase buildPartial() {
+                MessageBase result = new MessageBase(this);
                 int from_bitField0_ = bitField0_;
                 int to_bitField0_ = 0;
                 if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -438,16 +415,16 @@ public final class Message {
             }
 
             public Builder mergeFrom(com.google.protobuf.Message other) {
-                if (other instanceof Message.MessageBase) {
-                    return mergeFrom((Message.MessageBase) other);
+                if (other instanceof MessageBase) {
+                    return mergeFrom((MessageBase) other);
                 } else {
                     super.mergeFrom(other);
                     return this;
                 }
             }
 
-            public Builder mergeFrom(Message.MessageBase other) {
-                if (other == Message.MessageBase.getDefaultInstance()) return this;
+            public Builder mergeFrom(MessageBase other) {
+                if (other == MessageBase.getDefaultInstance()) return this;
                 if (other.hasClientId()) {
                     bitField0_ |= 0x00000001;
                     clientId_ = other.clientId_;
@@ -484,9 +461,6 @@ public final class Message {
                 return ((bitField0_ & 0x00000001) == 0x00000001);
             }
 
-            /**
-             * <code>required string clientId = 1;</code>
-             */
             public String getClientId() {
                 Object ref = clientId_;
                 if (!(ref instanceof String)) {
@@ -501,9 +475,6 @@ public final class Message {
                 }
             }
 
-            /**
-             * <code>required string clientId = 1;</code>
-             */
             public ByteString getClientIdBytes() {
                 Object ref = clientId_;
                 if (ref instanceof String) {
@@ -515,9 +486,6 @@ public final class Message {
                 }
             }
 
-            /**
-             * <code>required string clientId = 1;</code>
-             */
             public Builder setClientId(String value) {
                 if (value == null) {
                     throw new NullPointerException();
@@ -528,9 +496,6 @@ public final class Message {
                 return this;
             }
 
-            /**
-             * <code>required string clientId = 1;</code>
-             */
             public Builder clearClientId() {
                 bitField0_ = (bitField0_ & ~0x00000001);
                 clientId_ = getDefaultInstance().getClientId();
@@ -538,9 +503,6 @@ public final class Message {
                 return this;
             }
 
-            /**
-             * <code>required string clientId = 1;</code>
-             */
             public Builder setClientIdBytes(ByteString value) {
                 if (value == null) {
                     throw new NullPointerException();
@@ -553,24 +515,15 @@ public final class Message {
 
             private int cmd_ = 1;
 
-            /**
-             * <code>required .CommandType cmd = 2;</code>
-             */
             public boolean hasCmd() {
                 return ((bitField0_ & 0x00000002) == 0x00000002);
             }
 
-            /**
-             * <code>required .CommandType cmd = 2;</code>
-             */
             public Command.CommandType getCmd() {
                 Command.CommandType result = Command.CommandType.forNumber(cmd_);
                 return result == null ? Command.CommandType.AUTH : result;
             }
 
-            /**
-             * <code>required .CommandType cmd = 2;</code>
-             */
             public Builder setCmd(Command.CommandType value) {
                 if (value == null) {
                     throw new NullPointerException();
@@ -581,9 +534,6 @@ public final class Message {
                 return this;
             }
 
-            /**
-             * <code>required .CommandType cmd = 2;</code>
-             */
             public Builder clearCmd() {
                 bitField0_ = (bitField0_ & ~0x00000002);
                 cmd_ = 1;
@@ -593,16 +543,10 @@ public final class Message {
 
             private Object data_ = "";
 
-            /**
-             * <code>optional string data = 3;</code>
-             */
             public boolean hasData() {
                 return ((bitField0_ & 0x00000004) == 0x00000004);
             }
 
-            /**
-             * <code>optional string data = 3;</code>
-             */
             public String getData() {
                 Object ref = data_;
                 if (!(ref instanceof String)) {
@@ -618,16 +562,10 @@ public final class Message {
                 }
             }
 
-            /**
-             * <code>optional string data = 3;</code>
-             */
-            public ByteString
-            getDataBytes() {
+            public ByteString getDataBytes() {
                 Object ref = data_;
                 if (ref instanceof String) {
-                    ByteString b =
-                            ByteString.copyFromUtf8(
-                                    (String) ref);
+                    ByteString b = ByteString.copyFromUtf8((String) ref);
                     data_ = b;
                     return b;
                 } else {
@@ -635,9 +573,6 @@ public final class Message {
                 }
             }
 
-            /**
-             * <code>optional string data = 3;</code>
-             */
             public Builder setData(String value) {
                 if (value == null) {
                     throw new NullPointerException();
@@ -648,9 +583,6 @@ public final class Message {
                 return this;
             }
 
-            /**
-             * <code>optional string data = 3;</code>
-             */
             public Builder clearData() {
                 bitField0_ = (bitField0_ & ~0x00000004);
                 data_ = getDefaultInstance().getData();
@@ -658,9 +590,6 @@ public final class Message {
                 return this;
             }
 
-            /**
-             * <code>optional string data = 3;</code>
-             */
             public Builder setDataBytes(ByteString value) {
                 if (value == null) {
                     throw new NullPointerException();
@@ -683,7 +612,7 @@ public final class Message {
 
         }
 
-        private static final MessageBase DEFAULT_INSTANCE = new Message.MessageBase();
+        private static final MessageBase DEFAULT_INSTANCE = new MessageBase();
 
         public static MessageBase getDefaultInstance() {
             return DEFAULT_INSTANCE;
@@ -695,7 +624,6 @@ public final class Message {
 
     }
 
-
     private static final Descriptors.Descriptor internal_static_MessageBase_descriptor;
     private static final GeneratedMessageV3.FieldAccessorTable internal_static_MessageBase_fieldAccessorTable;
     private static Descriptors.FileDescriptor descriptor;
@@ -706,7 +634,7 @@ public final class Message {
 
     static {
         String[] descriptorData = {
-                "\n\rMessage.proto\032\rCommand.proto\"H\n\013Messag" +
+                "\n\rproto\032\rCommand.proto\"H\n\013Messag" +
                         "eBase\022\020\n\010clientId\030\001 \002(\t\022\031\n\003cmd\030\002 \002(\0162\014.C" +
                         "ommandType\022\014\n\004data\030\003 \001(\tB$\n\031com.jbo.nettyspringexample.co" +
                         "mmon.protobufB\007Message"
@@ -720,12 +648,11 @@ public final class Message {
                     }
                 };
         Descriptors.FileDescriptor
-                .internalBuildGeneratedFileFrom(descriptorData,
-                        new Descriptors.FileDescriptor[]{
-                                Command.getDescriptor(),
-                        }, assigner);
+                .internalBuildGeneratedFileFrom(descriptorData, new Descriptors.FileDescriptor[]{Command.getDescriptor()}, assigner);
         internal_static_MessageBase_descriptor = getDescriptor().getMessageTypes().get(0);
-        internal_static_MessageBase_fieldAccessorTable = new GeneratedMessageV3.FieldAccessorTable(internal_static_MessageBase_descriptor, new String[]{"ClientId", "Cmd", "Data",});
+        internal_static_MessageBase_fieldAccessorTable = new GeneratedMessageV3.FieldAccessorTable(internal_static_MessageBase_descriptor, new String[]{"ClientId", "Cmd", "Data"});
+        System.out.println(internal_static_MessageBase_descriptor);
+        System.out.println(internal_static_MessageBase_fieldAccessorTable);
         Command.getDescriptor();
     }
 
