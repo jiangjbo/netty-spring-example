@@ -298,6 +298,18 @@ public final class Message {
             return hash;
         }
 
+        @Deprecated
+        public static final Parser<MessageBase> PARSER = new AbstractParser<MessageBase>() {
+            public MessageBase parsePartialFrom(CodedInputStream input, ExtensionRegistryLite extensionRegistry) throws InvalidProtocolBufferException {
+                return new MessageBase(input, extensionRegistry);
+            }
+        };
+
+        @Override
+        public Parser<MessageBase> getParserForType() {
+            return PARSER;
+        }
+
         public Builder newBuilderForType() {
             return newBuilder();
         }
@@ -682,6 +694,7 @@ public final class Message {
         }
 
     }
+
 
     private static final Descriptors.Descriptor internal_static_MessageBase_descriptor;
     private static final GeneratedMessageV3.FieldAccessorTable internal_static_MessageBase_fieldAccessorTable;
